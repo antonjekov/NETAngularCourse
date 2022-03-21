@@ -6,6 +6,10 @@ namespace API.Entities
 {
     public class AppUser
     {
+        public AppUser()
+        {
+            this.Photos= new HashSet<Photo>();
+        }
         public int Id { get; set; }
 
         public string UserName { get; set; }

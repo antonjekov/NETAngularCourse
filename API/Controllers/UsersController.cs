@@ -2,6 +2,7 @@
 using API.DTOs;
 using API.Entities;
 using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using CloudinaryDotNet.Actions;
@@ -37,9 +38,16 @@ namespace API.Controllers
 
         // GET: api/<UsersController>
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetAsync()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetAsync([FromQuery]UserParams userParams)
         {
-            var users = await this.userRepository.GetMembersAsync();
+            var user = await userRepository.GetMemberAsync(User.GetUsername());
+            userParams.CurrentUsername = user.Username;
+            if (string.IsNullOrEmpty(userParams.Gender))
+            {
+                userParams.Gender = user.Gender == "male"?"female":"male";
+            }
+            var users = await this.userRepository.GetMembersAsync(userParams);
+            Response.AddPaginationHeader(users.CurrentPage, users.PageSize, users.TotalCount, users.TotalPages);
             return Ok(users);
         }
 

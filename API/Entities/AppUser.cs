@@ -9,6 +9,8 @@ namespace API.Entities
         public AppUser()
         {
             this.Photos= new HashSet<Photo>();
+            this.LikedByUsers = new HashSet<UserLike>();
+            this.LikedUsers = new HashSet<UserLike>();
         }
         public int Id { get; set; }
 
@@ -39,6 +41,10 @@ namespace API.Entities
         public string Country { get; set; }
 
         public ICollection<Photo> Photos { get; set; }
-       
+
+        public ICollection<UserLike> LikedByUsers { get; set; }
+
+        public ICollection<UserLike> LikedUsers { get; set; }
+
     }
 }

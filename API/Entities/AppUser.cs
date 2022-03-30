@@ -11,6 +11,8 @@ namespace API.Entities
             this.Photos= new HashSet<Photo>();
             this.LikedByUsers = new HashSet<UserLike>();
             this.LikedUsers = new HashSet<UserLike>();
+            this.MessagesSent = new HashSet<Message>();
+            this.MessagesReceived = new HashSet<Message>();
         }
         public int Id { get; set; }
 
@@ -45,6 +47,10 @@ namespace API.Entities
         public ICollection<UserLike> LikedByUsers { get; set; }
 
         public ICollection<UserLike> LikedUsers { get; set; }
+
+        public ICollection<Message> MessagesSent { get; set; }
+
+        public ICollection<Message> MessagesReceived { get; set; }
 
     }
 }

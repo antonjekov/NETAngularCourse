@@ -18,7 +18,7 @@ namespace API.DTOs
         public string KnownAs { get; set; }
 
         [Required]
-        public DateTime DateOfBirth { get; set; }
+        public DateTime BirthDate { get; set; }
 
         [Required]
         public string City { get; set; }

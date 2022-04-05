@@ -2,6 +2,7 @@
 using API.Entities;
 using API.Extensions;
 using AutoMapper;
+using System;
 using System.Linq;
 
 namespace API.Helpers
@@ -25,6 +26,9 @@ namespace API.Helpers
                     src.Recipient.Photos.FirstOrDefault(x => x.IsMain).Url))
                 .ForMember(dest => dest.SenderPhotoUrl, opt => opt.MapFrom(src =>
                     src.Sender.Photos.FirstOrDefault(x => x.IsMain).Url));
+            // Next line converts always the dates to local date time
+            CreateMap<DateTime, DateTime>().ConvertUsing(d=>DateTime.SpecifyKind(d, DateTimeKind.Utc));
+
         }
     }
 }

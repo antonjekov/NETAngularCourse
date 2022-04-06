@@ -6,6 +6,7 @@ using API.SignalR;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,10 +20,8 @@ namespace API.Extensions
         {
             services.AddSingleton<PresenceTracker>();
             services.Configure<ClaudinarySettings>(config.GetSection("CloudinarySettings"));
-            services.AddScoped<ITokenService, TokenService>();
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<ILikesRepository, LikesRepository>();
-            services.AddScoped<IMessageRepository, MessageRepository>();
+            services.AddScoped<ITokenService, TokenService>();            
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<LogUserActivity>();
             services.AddScoped<IPhotoService,PhotoService>();
             services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);

@@ -61,7 +61,8 @@ namespace API.SignalR
             List<string> connectionIds;
             lock (OnlineUsers)
             {
-                connectionIds = OnlineUsers.GetValueOrDefault(username).ToList();                           
+                OnlineUsers.TryGetValue(username, out connectionIds);
+                //connectionIds = OnlineUsers.GetValueOrDefault(username).ToList();
             }
             return Task.FromResult(connectionIds);
         }

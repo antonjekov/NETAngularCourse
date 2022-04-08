@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 
 namespace API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class UsersController : BaseAPIController
     {
         private readonly IUnitOfWork unitOfWork;
